@@ -15,7 +15,7 @@ mysqli_query($conn,"SET NAMES 'UTF8'");
 //   `id` int(11) NOT NULL AUTO_INCREMENT,
 //   `username` varchar(30) NOT NULL,
 //   `password` varchar(30) NOT NULL,
-//   `fistname` varchar(255) NOT NULL,
+//   `firstname` varchar(255) NOT NULL,
 //   `lastname` varchar(255) NOT NULL,
 //   `phone` varchar(255) NOT NULL,
 //   `email` varchar(255) NOT NULL,
