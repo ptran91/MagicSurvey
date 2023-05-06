@@ -1,5 +1,6 @@
 <?php 
 require_once("lib/connection.php");
+session_start();
 if (isset($_POST["btn_submit"])) {
 	if (isset($_POST["username"]) && isset($_POST["pass"])) {
 		$username = $_POST["username"];
@@ -10,7 +11,7 @@ if (isset($_POST["btn_submit"])) {
 		$password = strip_tags($password);
 		$password = addslashes($password);
 		if ($username == "" || $password =="") {
-			echo "username or password is no empty!";
+			echo "username or password is empty!";
 		} else {
 			$sql = "select * from users where username = '$username' and password = '$password' ";
 			$query = mysqli_query($conn,$sql);
@@ -20,7 +21,7 @@ if (isset($_POST["btn_submit"])) {
 			} else {
 				while ( $data = mysqli_fetch_array($query) ) {
 		    		$_SESSION["user_id"] = $data["id"];
-					$_SESSION['username'] = $data["username"];
+					$_SESSION["username"] = $data["username"];
 					$_SESSION["email"] = $data["email"];
 	                $_SESSION["phone"] = $data["phone"];
 					$_SESSION["firstname"] = $data["firstname"];
@@ -29,7 +30,7 @@ if (isset($_POST["btn_submit"])) {
 					$_SESSION["permision"] = $data["permision"];
 		    	}
 				
-				header('Location: index.php');
+				header("Location: homepage.php");
 				exit;
 			}
 		}
