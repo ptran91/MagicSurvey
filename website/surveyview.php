@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    $message = "Results";
+    $message = "";
     if(isset($_POST["btn_search"])) {
         if(isset($_POST["id_search"]) && isset($_POST["name_search"])) {
             $search_id = $_POST["id_search"];
@@ -18,7 +18,7 @@
             } else if($search_name == "") {
                 $message = "Surveys with ID $search_id";
             } else {
-                $message = "Surveys with ID $search_id and name $search_name";
+                $message = "Surveys with ID $search_id and name $search_name:";
             }
         }
     }
@@ -42,7 +42,8 @@
   </fieldset>
 
   <fieldset>
-    <legend><?php echo $message ?> </legend>
+    <legend>Results</legend>
+        <?php echo $message ?>
             <table>
                 <ul>
                     <li><a href="index.php">Test Link (goes back to index)</a></li>
