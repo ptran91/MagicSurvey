@@ -24,30 +24,30 @@
     }
 ?>
     <form method="POST" action="surveyview.php">
-    <fieldset>
-	    <legend>Find Surveys</legend>
-	    	<table>
-	    		<tr>
-	    			<td>Search by ID</td>
-	    			<td><input type="search" name="id_search" size="30"></td>
-	    		</tr>
-	    		<tr>
-	    			<td>Search By Name</td>
-	    			<td><input type="search" name="name_search" size="30"></td>
-	    		</tr>
-	    		<tr>
-	    			<td colspan="2" align="center"> <input type="submit" name="btn_search" value="Search"></td>
-	    		</tr>
-	    	</table>
-  </fieldset>
+        <fieldset>
+            <legend>Find Surveys</legend>
+                <table>
+                    <tr>
+                        <td>Search by ID</td>
+                        <td><input type="search" name="id_search" size="30"></td>
+                    </tr>
+                    <tr>
+                        <td>Search By Name</td>
+                        <td><input type="search" name="name_search" size="30"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"> <input type="submit" name="btn_search" value="Search"></td>
+                    </tr>
+                </table>
+        </fieldset>
 
-  <fieldset>
-    <legend>Results</legend>
-        <?php echo $message ?>
-        <table>
-            <ul>
-                <li><a href="index.php">Test Link (goes back to index)</a></li>
-            </ul>
-        </table>
-  </fieldset>
+        <fieldset>
+            <legend>Results</legend>
+                <?php echo $message ?>
+                <table>
+                    <ul>
+                        <li><a href="index.php">Test Link (goes back to index)</a></li>
+                    </ul>
+                </table>
+        </fieldset>
     </form>
