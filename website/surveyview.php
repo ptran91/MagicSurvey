@@ -44,10 +44,10 @@
   <fieldset>
     <legend>Results</legend>
         <?php echo $message ?>
-            <table>
-                <ul>
-                    <li><a href="index.php">Test Link (goes back to index)</a></li>
-				</ul>
-            </table>
+        <table>
+            <ul>
+                <li><a href="index.php">Test Link (goes back to index)</a></li>
+            </ul>
+        </table>
   </fieldset>
     </form>
