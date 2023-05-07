@@ -4,8 +4,13 @@ $server_password = "";
 $server_host = "localhost";
 $database = 'cpsc332-magic survey';
 
-$conn = mysqli_connect($server_host,$server_username,$server_password,$database) or die("cannot connect to database");
-mysqli_query($conn,"SET NAMES 'UTF8'");
+try {
+    $conn = new PDO("mysql:host=$server_host;dbname=$database;charset=utf8mb4", $server_username, $server_password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+    exit;
+}
 
 
 // CREATE DATABASE IF NOT EXISTS `cpsc332-magic survey` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
