@@ -3,7 +3,7 @@ require_once("lib/connection.php");
 
 // Check if the user is already authenticated
 session_start();
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['username'])) {
     // User is already logged in, redirect to the desired page
     header('Location: homepage.php');
     exit;
