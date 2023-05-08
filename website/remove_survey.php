@@ -32,7 +32,8 @@ function removeSurvey($surveyId)
         // Close the database connection
         $db = null;
         
-        return true; // Survey removed successfully
+        // Survey removed successfully
+        return true; 
     } catch (PDOException $e) {
         echo "Error removing survey: " . $e->getMessage();
         return false;
@@ -40,8 +41,8 @@ function removeSurvey($surveyId)
 }
 
 // Example usage:
-$surveyId = 123; // Replace with the ID of the survey you want to remove
-$result = removeSurvey($surveyId);
+// $surveyId = 123;
+// $result = removeSurvey($surveyId);
 
 if ($result) {
     echo "Survey removed successfully.";

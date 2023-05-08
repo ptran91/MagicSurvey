@@ -45,8 +45,8 @@ function searchSurveys($searchTerm)
 }
 
 // Example usage:
-$searchTerm = 'ABC'; // Replace with the search term you want to use
-$result = searchSurveys($searchTerm);
+// $searchTerm = 'ABC';
+// $result = searchSurveys($searchTerm);
 
 if ($result) {
     // Display the search results
@@ -54,7 +54,6 @@ if ($result) {
         echo "Survey ID: " . $survey['survey_id'] . "<br>";
         echo "Name: " . $survey['name'] . "<br>";
         echo "Code: " . $survey['survey_code'] . "<br>";
-        // Display other survey details as needed
         echo "<br>";
     }
 } else {
