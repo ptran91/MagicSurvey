@@ -9,7 +9,7 @@
    password varchar(30) NOT NULL,
    phone varchar(255) NOT NULL,
    timestamp_date timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-   PRIMARY KEY (id)
+   PRIMARY KEY (UserId)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ; 
 /*--------------------------------------------------------*/
 CREATE TABLE IF NOT EXISTS Statuses(
