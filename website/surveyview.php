@@ -1,6 +1,8 @@
 <?php 
+    include "search_surveys.php";
     session_start();
     $message = "";
+    $result = [];
     if(isset($_POST["btn_search"])) {
         if(isset($_POST["id_search"]) && isset($_POST["name_search"])) {
             $search_id = $_POST["id_search"];
@@ -15,10 +17,13 @@
                 $message = "There are no search terms!";
             } else if($search_id == "") {
                 $message = "Surveys with name $search_name";
+                $result = searchSurveys($search_name, $search_id);
             } else if($search_name == "") {
                 $message = "Surveys with ID $search_id";
+                $result = searchSurveys($search_name, $search_id);
             } else {
-                $message = "Surveys with ID $search_id and name $search_name:";
+                $message = "Surveys with ID $search_id or name $search_name:";
+                $result = searchSurveys($search_name, $search_id);
             }
         }
     }
@@ -46,7 +51,14 @@
                 <?php echo $message ?>
                 <table>
                     <ul>
-                        <li><a href="index.php">Test Link (goes back to index)</a></li>
+                        <?php if($result) { ?>
+                            
+                            <?php foreach($result as $survey) { ?>
+                                <li><a href="index.php"><?php $survey['name'] ?> (link goes back to index)</a></li>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <li><a href="index.php">Test Link (goes back to index, also no results lol)</a></li>
+                        <?php } ?>
                     </ul>
                 </table>
         </fieldset>

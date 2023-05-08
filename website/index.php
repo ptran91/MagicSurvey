@@ -5,14 +5,6 @@ include "includes/header.php";
 
 <div class="innertube">
     <h1>Magic Survey</h1>
-    <?php
-    if (isset($_SESSION['username'])) {
-        echo 'Welcome, ' . $_SESSION['username'] . '! You can now create a survey. ';
-        echo '<a href="survey_form.php">Create Survey</a>';
-    } else {
-        echo 'All users must sign up before creating surveys.';
-    }
-    ?>
 </div>
 
 </div>
