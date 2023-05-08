@@ -10,6 +10,8 @@ if (isset($_POST["btn_submit"])) {
     $description = $_POST["description"];
     $startDateTime = $_POST["StartDateTime"];
     $endDateTime = $_POST["EndDateTime"];
+    $userId = $_POST["userId"];
+    $statusId = $_POST["statusId"];
 
     // Validate the form data (perform any necessary validation checks)
 
@@ -34,14 +36,14 @@ if (isset($_POST["btn_submit"])) {
     }
 
     // Call the create_survey function passing the form data
-    create_survey($conn, $code, $name, $description, $startDateTime, $endDateTime, $questions);
+    create_survey($conn, $code, $name, $description, $startDateTime, $endDateTime, $questions, $userId, $statusId);
 }
 
-function create_survey($conn, $code, $name, $description, $startDateTime, $endDateTime, $questions)
+function create_survey($conn, $code, $name, $description, $startDateTime, $endDateTime, $questions, $userId, $statusId)
 {
     // Insert survey details into the database
-    $stmt = $conn->prepare("INSERT INTO surveys (SurveyCode, name, description, StartDateTime, EndDateTime) VALUES (?, ?, ?, ?, ?)");
-    $stmt->execute([$code, $name, $description, $startDateTime, $endDateTime]);
+    $stmt = $conn->prepare("INSERT INTO surveys (SurveyCode, name, description, StartDateTime, EndDateTime, UserId, StatusId) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$code, $name, $description, $startDateTime, $endDateTime, $userId, $statusId]);
 
     // Get the ID of the newly inserted survey
     $surveyId = $conn->lastInsertId();
@@ -58,7 +60,7 @@ function create_survey($conn, $code, $name, $description, $startDateTime, $endDa
     }
 
     // Redirect to a success page or do any additional processing if needed
-    header("Location: success.php");
+    header("Location: index.php");
     exit();
 }
 ?>

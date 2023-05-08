@@ -16,6 +16,9 @@
     <label for="EndDateTime">End Date and Time:</label>
     <input type="datetime-local" name="EndDateTime" required><br>
 
+    <input type="hidden" name="UserID" value="<?php echo $_SESSION['UserID']; ?>" required><br>
+    <input type="hidden" name="StatusID" value="1" required><br>
+
     <!-- Questions -->
     <h3>Questions:</h3>
 
@@ -77,7 +80,7 @@
         // Update the question count input value
         questionCountInput.value = questionCount;
 
-        // Add event listener to the newly added remove question button
+        // Add event listener to the remove question button
         var removeQuestionButtons = document.getElementsByClassName('remove_question');
         for (var i = 0; i < removeQuestionButtons.length; i++) {
             removeQuestionButtons[i].addEventListener('click', function () {
