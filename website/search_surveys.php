@@ -1,7 +1,7 @@
 <?php
 
 // Function to search surveys by name or code
-function searchSurveys($searchTerm)
+function searchSurveys($searchName, $searchID)
 {
     // Get the database connection details from environment variables
     $host = getenv('DB_HOST');
@@ -20,12 +20,13 @@ function searchSurveys($searchTerm)
         $stmt = $db->prepare("
             SELECT *
             FROM Surveys
-            WHERE name LIKE :searchTerm
-            OR survey_code LIKE :searchTerm
+            WHERE name LIKE :searchName
+            OR survey_code LIKE :searchID
         ");
         
         // Bind the search term to the parameter in the query
-        $stmt->bindValue(':searchTerm', "%$searchTerm%", PDO::PARAM_STR);
+        $stmt->bindValue(':searchName', "%$searchName%", PDO::PARAM_STR);
+        $stmt->bindValue(':searchID', "%$searchID%", PDO::PARAM_STR);
         
         // Execute the query
         $stmt->execute();
@@ -45,17 +46,18 @@ function searchSurveys($searchTerm)
 }
 
 // Example usage:
-// $searchTerm = 'ABC';
-// $result = searchSurveys($searchTerm);
+// $searchName = 'ABC';
+// $searchID = '1234'
+// $result = searchSurveys($searchName, $searchID);
 
-if ($result) {
-    // Display the search results
-    foreach ($result as $survey) {
-        echo "Survey ID: " . $survey['survey_id'] . "<br>";
-        echo "Name: " . $survey['name'] . "<br>";
-        echo "Code: " . $survey['survey_code'] . "<br>";
-        echo "<br>";
-    }
-} else {
-    echo "No surveys found.";
-}
+// if ($result) {
+//     // Display the search results
+//     foreach ($result as $survey) {
+//         echo "Survey ID: " . $survey['survey_id'] . "<br>";
+//         echo "Name: " . $survey['name'] . "<br>";
+//         echo "Code: " . $survey['survey_code'] . "<br>";
+//         echo "<br>";
+//     }
+// } else {
+//     echo "No surveys found.";
+// }
