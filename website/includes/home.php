@@ -53,6 +53,14 @@
         </div>
         <div class="col-md-6">
           <div class="img-box">
+            <img src="free/images/about-img.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+        <div class="col-md-6">
+          <div class="img-box">
             <img src="images/about-img.png" alt="">
           </div>
         </div>
