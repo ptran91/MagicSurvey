@@ -39,7 +39,7 @@
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
-          <a class="navbar-brand mr-5" href="index.php">
+          <a class="navbar-brand mr-5" href="free/index.html">
             <img src="free/images/logo.png" alt="">
             <span>
               Team Blue
