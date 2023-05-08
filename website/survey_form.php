@@ -17,7 +17,6 @@
     <input type="datetime-local" name="EndDateTime" required><br>
 
     <input type="hidden" name="UserID" value="<?php echo $_SESSION['UserID']; ?>" required><br>
-    <input type="hidden" name="StatusID" value="1" required><br>
 
     <!-- Questions -->
     <h3>Questions:</h3>
