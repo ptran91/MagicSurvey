@@ -1,6 +1,14 @@
 <?php
 require_once("lib/connection.php");
 
+// Check if the user is already authenticated
+session_start();
+if (isset($_SESSION['user_id'])) {
+    // User is already logged in, redirect to the desired page
+    header('Location: create_survey.php');
+    exit;
+}
+
 if (isset($_POST["btn_submit"])) {
     if (isset($_POST["username"]) && isset($_POST["pass"])) {
         $username = $_POST["username"];
@@ -27,6 +35,7 @@ if (isset($_POST["btn_submit"])) {
             } else {
                 $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
+                // Store user information in session variables
                 $_SESSION["user_id"] = $data["id"];
                 $_SESSION['username'] = $data["username"];
                 $_SESSION["email"] = $data["email"];
@@ -34,8 +43,9 @@ if (isset($_POST["btn_submit"])) {
                 $_SESSION["firstname"] = $data["firstname"];
                 $_SESSION["lastname"] = $data["lastname"];
                 $_SESSION["is_block"] = $data["is_block"];
-                $_SESSION["permision"] = $data["permision"];
-
+                $_SESSION["permission"] = $data["permission"];
+                
+                // Successful login, redirect to the index page
                 header('Location: index.php');
                 exit;
             }
