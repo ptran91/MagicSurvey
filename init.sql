@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS `cpsc332-magic survey` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `cpsc332-magic survey`;
+CREATE DATABASE IF NOT EXISTS survey DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE survey;
 
 CREATE TABLE IF NOT EXISTS Users (
    UserId int(11) NOT NULL AUTO_INCREMENT,
