@@ -5,11 +5,11 @@ require_once("lib/connection.php");
 // Check if the form is submitted
 if (isset($_POST["btn_submit"])) {
     // Retrieve the form data
-    $code = $_POST["code"];
+    $code = $_POST["SurveyCode"];
     $name = $_POST["name"];
     $description = $_POST["description"];
-    $startDateTime = $_POST["start_datetime"];
-    $endDateTime = $_POST["end_datetime"];
+    $startDateTime = $_POST["StartDateTime"];
+    $endDateTime = $_POST["EndDateTime"];
 
     // Validate the form data (perform any necessary validation checks)
 
@@ -40,7 +40,7 @@ if (isset($_POST["btn_submit"])) {
 function create_survey($conn, $code, $name, $description, $startDateTime, $endDateTime, $questions)
 {
     // Insert survey details into the database
-    $stmt = $conn->prepare("INSERT INTO surveys (code, name, description, start_datetime, end_datetime) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO surveys (SurveyCode, name, description, StartDateTime, EndDateTime) VALUES (?, ?, ?, ?, ?)");
     $stmt->execute([$code, $name, $description, $startDateTime, $endDateTime]);
 
     // Get the ID of the newly inserted survey
@@ -57,52 +57,8 @@ function create_survey($conn, $code, $name, $description, $startDateTime, $endDa
         $stmt->execute([$surveyId, $questionName, $questionDescription, $questionType, $position]);
     }
 
-    return true;
+    // Redirect to a success page or do any additional processing if needed
+    header("Location: success.php");
+    exit();
 }
 ?>
-
-<!-- HTML form to collect survey data -->
-<form method="POST" action="create_survey.php">
-    <!-- Survey details -->
-    <label for="code">Code:</label>
-    <input type="text" name="code" required><br>
-
-    <label for="name">Name:</label>
-    <input type="text" name="name" required><br>
-
-    <label for="description">Description:</label>
-    <textarea name="description" required></textarea><br>
-
-    <label for="start_datetime">Start Date and Time:</label>
-    <input type="datetime-local" name="start_datetime" required><br>
-
-    <label for="end_datetime">End Date and Time:</label>
-    <input type="datetime-local" name="end_datetime" required><br>
-
-    <!-- Questions -->
-    <label for="question_count">Number of Questions:</label>
-    <input type="number" name="question_count" min="1" required><br>
-
-    <h3>Questions:</h3>
-
-    <?php
-    // Generate input fields for each question
-    for ($i = 1; $i <= $questionCount; $i++) {
-        echo '<h4>Question ' . $i . '</h4>';
-        echo '<label for="question_name_' . $i . '">Question Name:</label>';
-        echo '<input type="text" name="question_name_' . $i . '" required><br>';
-
-        echo '<label for="question_description_' . $i . '">Question Description:</label>';
-        echo '<textarea name="question_description_' . $i . '" required></textarea><br>';
-
-        echo '<label for="question_type_' . $i . '">Question Type:</label>';
-        echo '<select name="question_type_' . $i . '" required>';
-        echo '<option value="text">Text</option>';
-        echo '<option value="radio">Radio</option>';
-        echo '<option value="checkbox">Checkbox</option>';
-        echo '</select><br>';
-    }
-    ?>
-
-    <input type="submit" name="btn_submit" value="Create Survey">
-</form>

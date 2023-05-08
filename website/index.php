@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include "includes/header.php";
@@ -9,7 +8,7 @@ include "includes/header.php";
     <?php
     if (isset($_SESSION['username'])) {
         echo 'Welcome, ' . $_SESSION['username'] . '! You can now create a survey. ';
-        echo '<a href="create_survey.php">Create Survey</a>';
+        echo '<a href="survey_form.php">Create Survey</a>';
     } else {
         echo 'All users must sign up before creating surveys.';
     }
