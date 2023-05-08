@@ -1,11 +1,38 @@
+<style>
+    body {
+        background-image: url('free/images/hero-bg.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .form-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 500px;
+        margin: auto;
+    }
+    .form-container h2 {
+        text-align: center;
+    }
+</style>
+
 <?php 
     session_start();
-    if(isset($_SESSION["username"])){
+    $username = "";
+    if(isset($_SESSION["username"]) && !empty($_SESSION["username"])){
         $username = $_SESSION["username"];
     }
 ?>
+
+<html>
+<head>
+    <title>Magic Survey</title>
+</head>
+<body>
+<div class="form-container">
+<h2>Welcome </h2>
     <form method="POST" action="homepage.php">
-        <h1>Welcome, <?php echo $username ?> </h1>
+        <?php echo $username ?>
         <nav>
 			<div class="innertube">
 				<ul>
