@@ -76,7 +76,7 @@ if (isset($_POST["btn_submit"])) {
 
 <html>
 <head>
-    <title>Magic Survey</title>
+    <title>Login</title>
 </head>
 <body>
 <div class="form-container">

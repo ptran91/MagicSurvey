@@ -61,6 +61,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="login.php"> Login </a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.php"> About Us </a>
+                </li>
               </ul>
               <form class="form-inline">
                 <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>

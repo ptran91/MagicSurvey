@@ -1,5 +1,5 @@
 <head>
-    <title>Magic Survey</title>
+    <title>Register</title>
     <style>
         body {
             background-image: url('free/images/hero-bg.jpg');
