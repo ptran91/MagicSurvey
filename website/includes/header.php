@@ -12,7 +12,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Magic Survey</title>
+  <title>Homepage</title>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"

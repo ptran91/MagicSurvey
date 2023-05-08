@@ -12,7 +12,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>About Us</title>
+  <title>Login</title>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"

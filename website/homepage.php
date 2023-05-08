@@ -31,7 +31,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>About Us</title>
+  <title>Surveys</title>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"
@@ -112,11 +112,14 @@
 </head>
 <body>
 <div class="form-container">
-<h2>Welcome </h2>
+            <div class="col-md-6">
+                <div class="detail-box">
+                    <div class="heading_container">
+                        <h2>Welcome </h2>
     <form method="POST" action="homepage.php">
         <?php echo $username ?>
         <nav>
-			<div class="innertube">
+</div class="innertube">
 				<ul>
                     <li><a href="surveycreate.php">Create Survey</a></li>
 				</ul>
