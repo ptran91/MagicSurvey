@@ -5,7 +5,7 @@ require_once("lib/connection.php");
 session_start();
 if (isset($_SESSION['user_id'])) {
     // User is already logged in, redirect to the desired page
-    header('Location: create_survey.php');
+    header('Location: homepage.php');
     exit;
 }
 
@@ -45,8 +45,8 @@ if (isset($_POST["btn_submit"])) {
                 $_SESSION["is_block"] = $data["is_block"];
                 $_SESSION["permission"] = $data["permission"];
                 
-                // Successful login, redirect to the index page
-                header('Location: index.php');
+                // Successful login, redirect to the homepage
+                header("Location: homepage.php");
                 exit;
             }
         }
