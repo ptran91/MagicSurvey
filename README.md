@@ -1,3 +1,3 @@
 # MagicSurvey
-CSUF CPSC332 Final Project
+CSUF CPSC-332 Final Project
 Survey Website
