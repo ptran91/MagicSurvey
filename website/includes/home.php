@@ -16,9 +16,15 @@
                         </span>
                       </h1>
                       <div class="btn-box">
-                        <a href="homepage.php" class="btn-1">
-                          Click Here
-                        </a>
+                        <?php if (isset($_SESSION['user_id'])) { ?>
+                          <a href="homepage.php" class="btn-1">
+                            Click Here
+                          </a>
+                        <?php } else { ?>
+                          <a href="login.php" class="btn-1">
+                            Click Here
+                          </a>
+                        <?php } ?>
                       </div>
                     </div>
                   </div>
