@@ -177,4 +177,6 @@ if (isset($_POST["btn_submit"])) {
             </p>
     </form>
 </div>
-
+</div>
+</body>
+</html>
