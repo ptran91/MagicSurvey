@@ -3,26 +3,14 @@
 // Function to search surveys by name or code
 function searchSurveys($searchName, $searchID)
 {
-    // Get the database connection details from environment variables
-    $host = getenv('DB_HOST');
-    $dbName = getenv('DB_NAME');
-    $username = getenv('DB_USERNAME');
-    $password = getenv('DB_PASSWORD');
+    // Get the database connection details from connection.php
+    require_once("lib/connection.php");
     
     try {
-        // Create a new PDO instance
-        $db = new PDO("mysql:host=$host;dbname=$dbName", $username, $password);
-        
-        // Set PDO error mode to exception
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "SELECT * FROM surveys WHERE Name LIKE :searchName OR SurveyCode LIKE :searchID";
         
         // Prepare the SQL statement with a parameterized query to prevent SQL injection
-        $stmt = $db->prepare("
-            SELECT *
-            FROM Surveys
-            WHERE name LIKE :searchName
-            OR survey_code LIKE :searchID
-        ");
+        $stmt = $conn->prepare($sql);
         
         // Bind the search term to the parameter in the query
         $stmt->bindValue(':searchName', "%$searchName%", PDO::PARAM_STR);
