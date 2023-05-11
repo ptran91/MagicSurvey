@@ -133,14 +133,14 @@ if (isset($_POST["btn_submit"])) {
                 $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 // Store user information in session variables
-                $_SESSION["user_id"] = $data["id"];
+                $_SESSION["user_id"] = $data["UserId"];
                 $_SESSION['username'] = $data["username"];
                 $_SESSION["email"] = $data["email"];
                 $_SESSION["phone"] = $data["phone"];
-                $_SESSION["firstname"] = $data["firstname"];
-                $_SESSION["lastname"] = $data["lastname"];
-                $_SESSION["is_block"] = $data["is_block"];
-                $_SESSION["permission"] = $data["permission"];
+                $_SESSION["firstname"] = $data["FirstName"];
+                $_SESSION["lastname"] = $data["LastName"];
+                // $_SESSION["is_block"] = $data["is_block"];
+                // $_SESSION["permission"] = $data["permission"];
                 
                 // Successful login, redirect to the homepage
                 header("Location: homepage.php");

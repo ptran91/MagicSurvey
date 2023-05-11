@@ -121,7 +121,7 @@
         <nav>
 </div class="innertube">
 				<ul>
-                    <li><a href="surveycreate.php">Create Survey</a></li>
+                    <li><a href="survey_form.php">Create Survey</a></li>
 				</ul>
 				<ul>
                     <li><a href="surveyview.php">View Surveys</a></li>

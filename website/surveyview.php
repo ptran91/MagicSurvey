@@ -133,10 +133,10 @@
                         <?php if($result) { ?>
                             
                             <?php foreach($result as $survey) { ?>
-                                <li><a href="index.php"><?php $survey['name'] ?> (link goes back to index)</a></li>
+                                <li><a href="index.php"><?php $survey['name'] ?> (link goes back to index.php)</a></li>
                             <?php } ?>
                         <?php } else { ?>
-                            <li><a href="index.php">Test Link (goes back to index, also no results lol)</a></li>
+                            <li><a href="index.php">Test Link (goes back to index.php)</a></li>
                         <?php } ?>
                     </ul>
                 </table>
