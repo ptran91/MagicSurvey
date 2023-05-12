@@ -117,8 +117,9 @@
                     <div class="heading_container">
                         <h2>Welcome </h2>
     <form method="POST" action="homepage.php">
-        <?php echo $username ?>
-        <nav>
+  </p>
+        <?php echo $username ?> <a href="logout.php">log out</a>
+  </p>
 </div class="innertube">
 				<ul>
                     <li><a href="survey_form.php">Create Survey</a></li>
