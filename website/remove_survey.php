@@ -3,25 +3,14 @@
 // Function to remove a survey
 function removeSurvey($surveyId)
 {
-    // Get the database connection details from environment variables
-    $host = getenv('DB_HOST');
-    $dbName = getenv('DB_NAME');
-    $username = getenv('DB_USERNAME');
-    $password = getenv('DB_PASSWORD');
+    // Get the database connection details from connection.php
+    require_once("lib/connection.php");
     
     try {
-        // Create a new PDO instance
-        $db = new PDO("mysql:host=$host;dbname=$dbName", $username, $password);
-        
-        // Set PDO error mode to exception
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = "UPDATE Surveys SET is_closed = 1 -- Assuming is_closed=1 indicates the survey is removed WHERE survey_id = :surveyId";
         
         // Prepare the SQL statement to update the survey's status
-        $stmt = $db->prepare("
-            UPDATE Surveys
-            SET is_closed = 1 -- Assuming is_closed=1 indicates the survey is removed
-            WHERE survey_id = :surveyId
-        ");
+        $stmt = $conn->prepare($sql);
         
         // Bind the survey ID to the parameter in the query
         $stmt->bindValue(':surveyId', $surveyId, PDO::PARAM_INT);
