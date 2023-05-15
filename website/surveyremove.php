@@ -101,7 +101,6 @@
         echo "Error removing survey: " . $e->getMessage();
         return false;
     }
-    
 ?>
 
 
@@ -112,7 +111,7 @@
                 <ul>
                     <?php if($result) { ?>
                         <?php foreach($result as $survey) { ?>
-                            <td colspan="2" align="center"> <input type="submit" name="btn_remove" value="<?php $survey["Name"]?>" onclick="document.write('<?php removeSurvey($survey['SurveyCode']) ?>');" ></td>
+                            <li><td colspan="2" align="center"> <input type="submit" name="btn_remove" value="<?php $survey["Name"]?>" onclick="document.write('<?php removeSurvey($survey['SurveyCode']) ?>');" ></td><li>
                         <?php } ?>
                     <?php } else { ?>
                         <li>No Results</li>
