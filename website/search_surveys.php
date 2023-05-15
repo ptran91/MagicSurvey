@@ -13,8 +13,8 @@ function searchSurveys($searchName, $searchID)
         $stmt = $conn->prepare($sql);
         
         // Bind the search term to the parameter in the query
-        $stmt->bindValue(':searchName', "%$searchName%", PDO::PARAM_STR);
-        $stmt->bindValue(':searchID', "%$searchID%", PDO::PARAM_STR);
+        $stmt->bindValue(':searchName', $searchName, PDO::PARAM_STR);
+        $stmt->bindValue(':searchID', $searchID, PDO::PARAM_STR);
         
         // Execute the query
         $stmt->execute();
