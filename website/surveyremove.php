@@ -12,7 +12,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Find Surveys</title>
+  <title>Remove Surveys</title>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"
@@ -103,36 +103,19 @@
     }
     
 ?>
-    <form method="POST" action="surveyremove.php">
-        <fieldset>
-            <legend>Your Surveys (click to remove)</legend>
-                <table>
-                    <ul>
-                        <?php if($result) { ?>
-                            <?php foreach($result as $survey) { ?>
-                                <td colspan="2" align="center"> <input type="submit" name="btn_remove" value="<?php $survey["Name"]?>" onclick="document.write('<?php removeSurvey($survey['SurveyCode']) ?>');" ></td>
-                            <?php } ?>
-                        <?php } else { ?>
-                            <li>No Results</li>
+<form method="POST" action="surveyremove.php">
+    <fieldset>
+        <legend>Your Surveys (click to remove)</legend>
+            <table>
+                <ul>
+                    <?php if($result) { ?>
+                        <?php foreach($result as $survey) { ?>
+                            <td colspan="2" align="center"> <input type="submit" name="btn_remove" value="<?php $survey["Name"]?>" onclick="document.write('<?php removeSurvey($survey['SurveyCode']) ?>');" ></td>
                         <?php } ?>
-                    </ul>
-                </table>
-        </fieldset>
-
-        <fieldset>
-            <legend>Results</legend>
-                <?php echo $message ?>
-                <table>
-                    <ul>
-                        <?php if($result) { ?>
-                            
-                            <?php foreach($result as $survey) { ?>
-                                <li><a href="index.php"><?php echo $survey['Name'] ?> (link goes back to index.php)</a></li>
-                            <?php } ?>
-                        <?php } else { ?>
-                            <li>No Results</li>
-                        <?php } ?>
-                    </ul>
-                </table>
-        </fieldset>
-    </form>
+                    <?php } else { ?>
+                        <li>No Results</li>
+                    <?php } ?>
+                </ul>
+            </table>
+    </fieldset>        
+</form>
