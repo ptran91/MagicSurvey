@@ -1,3 +1,8 @@
+<?php
+session_start();
+?>
+
+
 <!-- HTML form to collect survey data -->
 <form method="POST" action="create_survey.php">
     <!-- Survey details -->

@@ -27,7 +27,7 @@ if (isset($_POST["btn_submit"])) {
         $questionName = $_POST["question_name_" . $i];
         $questionDescription = $_POST["question_description_" . $i];
         $questionType = $_POST["question_type_" . $i];
-
+        create_question_type();
         // Validate the question data
 
         $questions[] = [
@@ -54,6 +54,20 @@ function create_status($conn, $statusName, $statusTimeStamp)
     }
 }
 
+function get_questionTypeId_by_Name($conn, $questionTypeName) {
+    $sql = "SELECT * FROM surveys WHERE Name LIKE :questionTypeName";
+        
+    // Prepare the SQL statement with a parameterized query to prevent SQL injection
+    $stmt = $conn->prepare($sql);
+    
+    // Bind the search term to the parameter in the query
+    $stmt->bindValue(':questionTypeName', $questionTypeName, PDO::PARAM_STR);
+    
+    // Execute the query
+    $stmt->execute();
+
+    return $conn->lastInsertId();
+}
 
 function create_survey($conn, $code, $name, $description, $startDateTime, $endDateTime, $questions, $userId, $statusId)
 {
@@ -61,15 +75,13 @@ function create_survey($conn, $code, $name, $description, $startDateTime, $endDa
         $stmt = $conn->prepare("INSERT INTO surveys (SurveyCode, name, description, StartDateTime, EndDateTime, UserId, StatusId) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([$code, $name, $description, $startDateTime, $endDateTime, $userId, $statusId]);
 
-        $surveyId = $conn->lastInsertId();
-
         foreach ($questions as $position => $question) {
             $questionName = $question['name'];
             $questionDescription = $question['description'];
-            $questionType = $question['type'];
+            $questionTypeId = get_questionTypeId_by_Name($conn, $question['type']);
 
-            $stmt = $conn->prepare("INSERT INTO questions (survey_id, name, description, type, position) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([$surveyId, $questionName, $questionDescription, $questionType, $position]);
+            $stmt = $conn->prepare("INSERT INTO questions (QuestionId, Name, Description, SurveyCode, QuestionTypeId, timestamp_date) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute(['', $questionName, $questionDescription, $code, $questionTypeId, date('Y-m-d H:i:s')]);
         }
 
         header("Location: index.php");
