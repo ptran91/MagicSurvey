@@ -82,41 +82,33 @@
     session_start();
     // Get the database connection details from connection.php
     require_once("lib/connection.php");
-    
-    try {
-        $sql = "SELECT * FROM surveys WHERE UserId LIKE :currentUser";
-        
-        // Prepare the SQL statement to update the survey's status
-        $stmt = $conn->prepare($sql);
-        
-        // Bind the survey ID to the parameter in the query
-        $stmt->bindValue(':currentUser', $_SESSION["user_id"], PDO::PARAM_INT);
-        
-        // Execute the query
-        $stmt->execute();
-        
-        // Survey removed successfully
-        return true; 
-    } catch (PDOException $e) {
-        echo "Error removing survey: " . $e->getMessage();
-        return false;
-    }
+
+    $sql = "SELECT * FROM surveys WHERE UserId LIKE :currentUser";
+      
+    // Prepare the SQL statement to update the survey's status
+    $stmt = $conn->prepare($sql);
+      
+    // Bind the survey ID to the parameter in the query
+    $stmt->bindValue(':currentUser', $_SESSION["user_id"], PDO::PARAM_INT);
+      
+    // Execute the query
+    $stmt->execute();
+
+    $result = $stmt->fetchAll();
 ?>
-
-
 <form method="POST" action="surveyremove.php">
-    <fieldset>
-        <legend>Your Surveys (click to remove)</legend>
-            <table>
-                <ul>
-                    <?php if($result) { ?>
-                        <?php foreach($result as $survey) { ?>
-                            <li><td colspan="2" align="center"> <input type="submit" name="btn_remove" value="<?php $survey["Name"]?>" onclick="document.write('<?php removeSurvey($survey['SurveyCode']) ?>');" ></td><li>
+        <fieldset>
+            <legend>Your Surveys (click to remove)</legend>
+                <table>
+                    <ul>
+                        <?php if($result) { ?>
+                            <?php foreach($result as $survey) { ?>
+                                <li><input type="submit" value=<?php echo $survey['Name']?> onclick=<?php removeSurvey($survey["SurveyCode"], $conn) ?>><li>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <li>No Results</li>
                         <?php } ?>
-                    <?php } else { ?>
-                        <li>No Results</li>
-                    <?php } ?>
-                </ul>
-            </table>
-    </fieldset>        
-</form>
+                    </ul>
+                </table>
+        </fieldset>        
+    </form>
