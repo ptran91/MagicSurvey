@@ -80,3 +80,7 @@ VALUES (NULL, 'Multiple answers', 'Respondents can choose more than one answer f
 (NULL, 'Multiple choice', 'Respondents can choose only one answer from the available options.', CURRENT_TIMESTAMP()),
 (NULL, 'Yes/No', 'Respondents can either choose yes or no.', current_timestamp()), 
 (NULL, 'Essay', 'Respondents can enter anything into the answer textbox.', current_timestamp());
+
+INSERT INTO `Users` (UserId, username, FirstName, LastName, email, password, phone)
+VALUES(0, 'removed', 'removed', 'removed', 'removed', 'rjlksadjf.asdjfJKl(*(*32kjK', 'removed');
+UPDATE Users SET UserId = 0 WHERE username = 'removed';
