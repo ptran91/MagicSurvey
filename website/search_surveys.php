@@ -13,17 +13,14 @@ function searchSurveys($searchName, $searchID)
         $stmt = $conn->prepare($sql);
         
         // Bind the search term to the parameter in the query
-        $stmt->bindValue(':searchName', "%$searchName%", PDO::PARAM_STR);
-        $stmt->bindValue(':searchID', "%$searchID%", PDO::PARAM_STR);
+        $stmt->bindValue(':searchName', $searchName, PDO::PARAM_STR);
+        $stmt->bindValue(':searchID', $searchID, PDO::PARAM_STR);
         
         // Execute the query
         $stmt->execute();
         
         // Fetch all the matching surveys
-        $surveys = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-        // Close the database connection
-        $db = null;
+        $surveys = $stmt->fetchAll();
         
         // Return the surveys
         return $surveys;
@@ -41,9 +38,9 @@ function searchSurveys($searchName, $searchID)
 // if ($result) {
 //     // Display the search results
 //     foreach ($result as $survey) {
-//         echo "Survey ID: " . $survey['survey_id'] . "<br>";
-//         echo "Name: " . $survey['name'] . "<br>";
-//         echo "Code: " . $survey['survey_code'] . "<br>";
+//         echo "Name: " . $survey['Name'] . "<br>";
+//         echo "Code: " . $survey['SurveyCode'] . "<br>";
+//         echo "Description: " . $survey['Description'] . "<br>";
 //         echo "<br>";
 //     }
 // } else {
