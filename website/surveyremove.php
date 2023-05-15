@@ -103,6 +103,8 @@
     }
     
 ?>
+
+
 <form method="POST" action="surveyremove.php">
     <fieldset>
         <legend>Your Surveys (click to remove)</legend>
