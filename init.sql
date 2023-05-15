@@ -12,6 +12,8 @@
    timestamp_date timestamp DEFAULT CURRENT_TIMESTAMP,
    PRIMARY KEY (UserId)
  ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ; 
+ 
+ INSERT INTO `Users` (`UserId`, `username`, `FirstName`, `LastName`, `email`, `password`, `phone`, `timestamp_date`) VALUES ('0', 'removed', 'removed', 'removed', 'removed@removed.com', 'removed', '5555555555', current_timestamp()); 
 
 CREATE TABLE IF NOT EXISTS Statuses(
     StatusId int(11) NOT NULL AUTO_INCREMENT,

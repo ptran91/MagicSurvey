@@ -7,7 +7,7 @@ function removeSurvey($surveyId)
     require_once("lib/connection.php");
     
     try {
-        $sql = "UPDATE Surveys SET is_closed = 1 -- Assuming is_closed=1 indicates the survey is removed WHERE survey_id = :surveyId";
+        $sql = "UPDATE surveys SET UserId = 0 -- Assuming UserId = 0 indicates the survey is removed by being assigned to user named removed";
         
         // Prepare the SQL statement to update the survey's status
         $stmt = $conn->prepare($sql);
@@ -17,9 +17,6 @@ function removeSurvey($surveyId)
         
         // Execute the query
         $stmt->execute();
-        
-        // Close the database connection
-        $db = null;
         
         // Survey removed successfully
         return true; 
