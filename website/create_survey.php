@@ -55,7 +55,7 @@ function create_status($conn, $statusName, $statusTimeStamp)
 }
 
 function get_questionTypeId_by_Name($conn, $questionTypeName) {
-    $sql = "SELECT * FROM surveys WHERE Name LIKE :questionTypeName";
+    $sql = "SELECT * FROM questiontypes WHERE Name LIKE :questionTypeName";
         
     // Prepare the SQL statement with a parameterized query to prevent SQL injection
     $stmt = $conn->prepare($sql);
