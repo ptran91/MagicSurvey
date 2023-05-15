@@ -27,7 +27,6 @@ if (isset($_POST["btn_submit"])) {
         $questionName = $_POST["question_name_" . $i];
         $questionDescription = $_POST["question_description_" . $i];
         $questionType = $_POST["question_type_" . $i];
-        create_question_type();
         // Validate the question data
 
         $questions[] = [
@@ -66,7 +65,10 @@ function get_questionTypeId_by_Name($conn, $questionTypeName) {
     // Execute the query
     $stmt->execute();
 
-    return $conn->lastInsertId();
+    // Fetch one matching surveys
+    $questiontype = $stmt->fetch();
+
+    return $questiontype["QuestionTypeId"];
 }
 
 function create_survey($conn, $code, $name, $description, $startDateTime, $endDateTime, $questions, $userId, $statusId)

@@ -53,9 +53,10 @@ session_start();
             '<textarea name="question_description_' + questionCount + '" required></textarea><br>' +
             '<label for="question_type_' + questionCount + '">Question Type:</label>' +
             '<select name="question_type_' + questionCount + '" required>' +
-            '<option value="text">Text</option>' +
-            '<option value="radio">Radio</option>' +
-            '<option value="checkbox">Checkbox</option>' +
+            '<option value="Multiple answers">Multiple answers</option>' +
+            '<option value="Multiple choice">Multiple choice</option>' +
+            '<option value="Yes/No">Yes/No</option>' +
+            '<option value="Essay">Essay</option>' +
             '</select>';
 
         if (isRemovable) {
