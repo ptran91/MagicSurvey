@@ -1,22 +1,3 @@
-<!-- <style>
-    body {
-        background-image: url('free/images/hero-bg.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-    .form-container {
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        width: 500px;
-        margin: auto;
-    }
-    .form-container h2 {
-        text-align: center;
-    }
-</style> -->
-
-
 <!DOCTYPE html>
 <html>
 
@@ -31,7 +12,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Surveys</title>
+  <title>Remove Surveys</title>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"
@@ -96,40 +77,38 @@
   </div>
 
 
-
-
 <?php 
+    include "remove_survey.php";
     session_start();
-    $username = "";
-    if(isset($_SESSION["username"]) && !empty($_SESSION["username"])){
-        $username = $_SESSION["username"];
-    }
-?>
+    // Get the database connection details from connection.php
+    require_once("lib/connection.php");
 
-<html>
-<head>
-    <title>Magic Survey</title>
-</head>
-<body>
-<div class="form-container">
-            <div class="col-md-6">
-                <div class="detail-box">
-                    <div class="heading_container">
-                        <h2>Welcome </h2>
-    <form method="POST" action="homepage.php">
-  </p>
-        <?php echo $username ?> <a href="logout.php">log out</a>
-  </p>
-</div class="innertube">
-				<ul>
-          <li><a href="survey_form.php">Create Survey</a></li>
-				</ul>
-				<ul>
-          <li><a href="surveyview.php">View Surveys</a></li>
-				</ul>
-        <ul>
-          <li><a href="surveyremove.php">Remove Surveys</li>
-        </ul>
-			</div>
-		</nav>
+    $sql = "SELECT * FROM surveys WHERE UserId LIKE :currentUser";
+      
+    // Prepare the SQL statement to update the survey's status
+    $stmt = $conn->prepare($sql);
+      
+    // Bind the survey ID to the parameter in the query
+    $stmt->bindValue(':currentUser', $_SESSION["user_id"], PDO::PARAM_INT);
+      
+    // Execute the query
+    $stmt->execute();
+
+    $result = $stmt->fetchAll();
+?>
+<form method="POST" action="surveyremove.php">
+        <fieldset>
+            <legend>Your Surveys (click to remove)</legend>
+                <table>
+                    <ul>
+                        <?php if($result) { ?>
+                            <?php foreach($result as $survey) { ?>
+                                <li><input type="submit" value=<?php echo $survey['Name']?> onclick=<?php removeSurvey($survey["SurveyCode"], $conn) ?>><li>
+                            <?php } ?>
+                        <?php } else { ?>
+                            <li>No Results</li>
+                        <?php } ?>
+                    </ul>
+                </table>
+        </fieldset>        
     </form>

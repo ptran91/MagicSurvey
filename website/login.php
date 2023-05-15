@@ -117,7 +117,9 @@ if (isset($_POST["btn_submit"])) {
         $password = addslashes($password);
 
         if ($username == "" || $password == "") {
-            echo "Username or password is not empty!";
+            echo "Username or password is empty!";
+        } else if ($username == "removed" || $password == "removed") {
+            echo "Username or password is not correct!";
         } else {
             $sql = "SELECT * FROM users WHERE username = :username AND password = :password";
             $stmt = $conn->prepare($sql);
@@ -139,8 +141,6 @@ if (isset($_POST["btn_submit"])) {
                 $_SESSION["phone"] = $data["phone"];
                 $_SESSION["firstname"] = $data["FirstName"];
                 $_SESSION["lastname"] = $data["LastName"];
-                // $_SESSION["is_block"] = $data["is_block"];
-                // $_SESSION["permission"] = $data["permission"];
                 
                 // Successful login, redirect to the homepage
                 header("Location: homepage.php");
