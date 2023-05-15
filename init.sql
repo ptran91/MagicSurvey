@@ -73,7 +73,8 @@ CREATE TABLE IF NOT EXISTS Responses(
     FOREIGN KEY (QuestionId) REFERENCES Questions (QuestionId) ON UPDATE  NO ACTION  ON DELETE  CASCADE,
     FOREIGN KEY (UserId) REFERENCES Users (UserId) ON UPDATE  NO ACTION  ON DELETE  CASCADE
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-//Insert question types
+
+USE `cpsc332-magic survey`;
 INSERT INTO `QuestionTypes` (`QuestionTypeId`, `Name`, `Description`, `timestamp_date`)
 VALUES (NULL, 'Multiple answers', 'Respondents can choose more than one answer from the available\r\noptions.\r\n', current_timestamp()), 
 (NULL, 'Multiple choice', 'Respondents can choose only one answer from the available options.', CURRENT_TIMESTAMP()),
